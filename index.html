@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Sleep Fuel — Track your caffeine. Protect your sleep.</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Sleep Fuel is the modern caffeine tracker for Android and Wear OS. Real-time decay calculation, smart sleep coach, beautiful glowing orb. Available on Google Play.">
+<meta property="og:title" content="Sleep Fuel — Caffeine Tracker">
+<meta property="og:description" content="Track your caffeine, protect your sleep. For Android & Wear OS.">
+<meta property="og:type" content="website">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  background:radial-gradient(ellipse at center top,#1F2750 0%,#0F1225 60%,#050714 100%);
+  color:#F0F2FF;
+  min-height:100vh;
+  line-height:1.6;
+}
+.container{max-width:1100px;margin:0 auto;padding:0 24px;}
+
+/* Header */
+header{padding:32px 0;text-align:center;}
+.logo{font-size:22px;font-weight:800;letter-spacing:-0.5px;}
+.logo span{color:#FFB347;}
+
+/* Hero */
+.hero{padding:80px 0 60px;text-align:center;}
+.hero h1{
+  font-size:clamp(40px,7vw,72px);
+  font-weight:900;
+  letter-spacing:-2px;
+  line-height:1.1;
+  margin-bottom:20px;
+  background:linear-gradient(135deg,#FFF6E0 0%,#FFB347 100%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.hero .tagline{font-size:clamp(18px,2.5vw,24px);color:#9CA3C4;max-width:600px;margin:0 auto 40px;}
+
+/* Orb visual */
+.orb{
+  width:280px;height:280px;
+  margin:60px auto;
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:50%;
+  background:radial-gradient(circle,rgba(0,212,255,0.15) 0%,rgba(0,212,255,0.05) 40%,transparent 70%);
+}
+.orb-ring{position:absolute;inset:0;border:1px solid rgba(0,212,255,0.3);border-radius:50%;animation:spin 14s linear infinite;}
+.orb-ring:nth-child(2){inset:-20px;border-color:rgba(0,212,255,0.2);animation:spin 10s linear infinite reverse;transform:rotate(-30deg);}
+.orb-ring:nth-child(3){inset:-40px;border-color:rgba(0,212,255,0.15);animation:spin 18s linear infinite;transform:rotate(75deg);}
+.orb-number{font-size:72px;font-weight:900;color:#fff;z-index:2;letter-spacing:-2px;}
+.orb-label{font-size:11px;letter-spacing:2px;color:#9CA3C4;position:absolute;bottom:80px;}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+
+/* CTA buttons */
+.cta-group{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:32px;}
+.cta{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 28px;
+  border-radius:14px;
+  font-weight:700;font-size:16px;
+  text-decoration:none;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.cta-primary{background:linear-gradient(135deg,#C4956A 0%,#A07A52 100%);color:#fff;box-shadow:0 8px 24px rgba(196,149,106,0.3);}
+.cta-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(196,149,106,0.4);}
+.cta-secondary{background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.15);}
+.cta-secondary:hover{background:rgba(255,255,255,0.12);}
+.coming-soon{display:inline-block;padding:6px 14px;background:rgba(255,179,71,0.15);color:#FFB347;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:1px;margin-top:12px;}
+
+/* Features */
+.features{padding:100px 0 60px;}
+.features h2{font-size:36px;text-align:center;margin-bottom:60px;font-weight:800;}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;}
+.feature{
+  padding:32px 24px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:20px;
+  transition:transform 0.3s,background 0.3s;
+}
+.feature:hover{transform:translateY(-4px);background:rgba(255,255,255,0.06);}
+.feature .emoji{font-size:40px;margin-bottom:16px;display:block;}
+.feature h3{font-size:18px;font-weight:700;margin-bottom:8px;color:#FFF6E0;}
+.feature p{color:#9CA3C4;font-size:15px;}
+
+/* Stats */
+.stats{padding:60px 0;text-align:center;background:rgba(255,255,255,0.02);border-top:1px solid rgba(255,255,255,0.06);border-bottom:1px solid rgba(255,255,255,0.06);margin:60px 0;}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:32px;max-width:800px;margin:0 auto;}
+.stat .num{font-size:48px;font-weight:900;color:#FFB347;letter-spacing:-1px;}
+.stat .label{font-size:13px;color:#9CA3C4;letter-spacing:1px;text-transform:uppercase;}
+
+/* Footer */
+footer{padding:60px 0 40px;text-align:center;color:#6B7194;font-size:14px;border-top:1px solid rgba(255,255,255,0.06);margin-top:40px;}
+footer a{color:#C4956A;text-decoration:none;margin:0 12px;}
+footer a:hover{color:#FFB347;}
+footer p{margin-top:20px;font-size:12px;color:#4A5070;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="logo">☕ Sleep <span>Fuel</span></div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>Track your caffeine.<br>Protect your sleep.</h1>
+    <p class="tagline">The modern caffeine tracker for Android & Wear OS. Real-time decay, smart sleep coach, beautiful glowing orb.</p>
+    
+    <div class="orb">
+      <div class="orb-ring"></div>
+      <div class="orb-ring"></div>
+      <div class="orb-ring"></div>
+      <div class="orb-number">150</div>
+      <div class="orb-label">MG ACTIVE</div>
+    </div>
+
+    <div class="cta-group">
+      <a href="#features" class="cta cta-primary">See features →</a>
+      <a href="privacy.html" class="cta cta-secondary">Privacy</a>
+    </div>
+    <div><span class="coming-soon">🚀 COMING SOON ON GOOGLE PLAY</span></div>
+  </div>
+</section>
+
+<section class="features" id="features">
+  <div class="container">
+    <h2>What makes it different</h2>
+    <div class="grid">
+      <div class="feature">
+        <span class="emoji">🧬</span>
+        <h3>Real-time decay calculation</h3>
+        <p>Based on your personal caffeine half-life. See exactly how much is active in your system, right now.</p>
+      </div>
+      <div class="feature">
+        <span class="emoji">😴</span>
+        <h3>Smart sleep coach</h3>
+        <p>Get personalized advice on when to stop drinking caffeine to protect tonight's sleep quality.</p>
+      </div>
+      <div class="feature">
+        <span class="emoji">⌚</span>
+        <h3>Wear OS app + sync</h3>
+        <p>Log drinks from your wrist. Glanceable orb, instant sync with your phone via Wearable Data Layer.</p>
+      </div>
+      <div class="feature">
+        <span class="emoji">📷</span>
+        <h3>Barcode scanner</h3>
+        <p>Scan any drink to instantly log it. Powered by OpenFoodFacts open database.</p>
+      </div>
+      <div class="feature">
+        <span class="emoji">🏆</span>
+        <h3>27 achievement badges</h3>
+        <p>Gamified clean-sleep streaks, zero-caffeine days, curfew respect. Share your wins.</p>
+      </div>
+      <div class="feature">
+        <span class="emoji">🔒</span>
+        <h3>Privacy first</h3>
+        <p>No account. No servers. No analytics. No ads. 100% local data with optional Health Connect sync.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="num">68+</div>
+        <div class="label">Drinks preset</div>
+      </div>
+      <div class="stat">
+        <div class="num">13</div>
+        <div class="label">Languages</div>
+      </div>
+      <div class="stat">
+        <div class="num">27</div>
+        <div class="label">Badges</div>
+      </div>
+      <div class="stat">
+        <div class="num">2</div>
+        <div class="label">Devices (phone + watch)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div>
+      <a href="privacy.html">Privacy Policy</a> ·
+      <a href="mailto:jerome.brivet@gmail.com">Contact</a> ·
+      <a href="https://github.com/SimRaceEngineer/sleepfuel-app">GitHub</a>
+    </div>
+    <p>© 2026 Jerome Brivet · Sleep Fuel · Track your caffeine. Protect your sleep.</p>
+  </div>
+</footer>
+
+</body>
+</html>
